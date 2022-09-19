@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include navigation.html %}
+    <div id="top" class="row">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <main class="container">
+            {{ content }}
+
+            <div class="to-top">
+              <a href="#top" class="paper-btn margin">
+                <i class='fa-solid fa-angle-up'></i>
+              </a>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div class="sm-12 md-4 col">
+
+        <div class="paper text-center">
+        {% if site.gravatar %}
+          <img src="{{ site.gravatar }}" alt="Gravatar" />
+        {% else %}
+          <img src="{{ site.avatar }}" alt="Avatar" />
+        {% endif %}
+          <h4>{{ site.author }}</h4>
+        {% if site.location %}
+          <h5>
+            <i class="fa-solid fa-location-dot"></i>
+            {{ site.location }}
+          </h5>
+        {% endif %} {% if site.bio %}
+          <p>
+            {{ site.bio }}
+          </p>
+        {% endif %}
+
+          <div class="row flex-center">
+            <div class="col-2 col">
+              <i class="fa-solid fa-chart-line"></i>
+              
+            </div>
+            <div class="col-2 col">
+              <i class="fa-solid fa-mug-saucer"></i>
+              
+            </div>
+          </div>
+          
+        </div>
+
+        
+        <div class="paper">
+          <h3 class="text-center">
+            <i class="fa-regular fa-folder"></i>
+            Categories
+          </h3>
+        {% for category in site.categories %}
+          <a href="#">{{ category[0] }}</a>
+        {% endfor %}
+        </div>
+        
+        <div class="paper">
+          <h3 class="text-center">
+            <i class="fa-solid fa-tags"></i>
+            Tags
+          </h3>
+        {% for tag in site.tags %}
+          <a href="#">{{ tag[0] }}</a>
+        {% endfor %}
+        </div>
+
+        <div class="paper">
+          <h3 class="text-center">Archive</h3>
+          
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

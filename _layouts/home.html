@@ -1,0 +1,70 @@
+---
+layout: default
+---
+<header class="text-center">
+  <h1>
+    {{ page.title }}
+  </h1>
+  <p>
+    {% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}
+  </p>
+</header>
+
+<section>
+  {% for post in paginator.posts %}
+  <article class="article">
+    <h3>{{ post.title }}</h3>
+    <p class="article-meta">
+      <span>
+        <i class="fa-regular fa-calendar"></i>
+        {{ post.date | date_to_string: "ordinal", "US" }}
+      </span>
+    {% if post.updated %}
+      <span>
+        <i class="fa-regular fa-calendar-check"></i>
+        {{ post.updated }}
+      </span>
+    {% endif %}{% for category in post.categories %}
+      <span class="text-capitalize">
+        <i class="fa-regular fa-folder"></i>
+        <a href="#">{{ category }}</a>
+      </span>
+    {% endfor %}
+    </p>
+    {{ post.excerpt }}
+    <div class="row">
+      <a class="paper-btn" href="{{ post.url }}">Read More</a>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section>
+  <div class="row flex-center">
+    <div class="sm-2 col">
+    {% if paginator.previous_page %}
+      <a class="paper-btn" href="{{ paginator.previous_page_path }}">
+        <i class='fa-solid fa-angles-left'></i>
+        Previous
+      </a>
+    {% else %}
+      <button class="disabled">Previous</button>
+    {% endif %}
+    </div>
+    <div class="sm-2 col">
+      <button>
+        {{ paginator.page }} of {{ paginator.total_pages }}
+      </button>
+    </div>
+    <div class="sm-2 col">
+    {% if paginator.next_page %}
+      <a class="paper-btn" href="{{ paginator.next_page_path }}">
+        Next
+        <i class='fa-solid fa-angles-right'></i>
+      </a>
+    {% else %}
+      <button class="disabled ">Next</button>
+    {% endif %}
+    </div>
+  </div>
+</section>
